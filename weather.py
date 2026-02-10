@@ -8,7 +8,7 @@ _DATE_FILED_NAME = "date"
 
 
 class Weather:
-    def __init__(self, min: int, max: int, air_humidity: float, date: datetime):
+    def __init__(self, min: int, max: int, air_humidity: int, date: datetime):
         self.min = min
         self.max = max
         self.air_humidity = air_humidity
@@ -26,7 +26,7 @@ class Weather:
         return f"Weather(max={self.max}, min={self.min}, date={self.date}, air_humidity={self.air_humidity})"
 
 
-def from_document(doc: Dict[int, int, int, float]) -> Weather:
+def from_document(doc: Dict[int, int, int, int]) -> Weather:
     return Weather(
         min=doc[_MIN_FIELD_NAME],
         max=doc[_MAX_FIELD_NAME],
