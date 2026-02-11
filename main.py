@@ -38,7 +38,7 @@ def input_weather() -> Weather:
 
 def main(mode: Literal["manual", "auto"]):
     data = load()
-    if (len(data) > 0) and (data[-1].date.date() == datetime.now().date()):
+    if (len(data) > 0) and (data[0].date.date() == datetime.now().date()):
         print("You have already registered today's weather")
 
         if mode == "auto":
