@@ -60,6 +60,7 @@ def main(mode: Literal["manual", "auto"]):
 
 
 if __name__ == "__main__":
+    print("Starting weather tracker program...")
     init_colorama()
 
     mode = sys.argv[1] if len(sys.argv) > 1 else "auto"
