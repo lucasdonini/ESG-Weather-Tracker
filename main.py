@@ -1,7 +1,7 @@
 from db_connection import save, load
 from weather import Weather
-from read_weather_api import read_weather
-from datetime import datetime
+from read_weather_api import read_todays_weather, request_past_data
+from datetime import datetime, timedelta
 from colorama import init as init_colorama, Fore, Style
 from typing import Literal
 import sys
@@ -49,12 +49,13 @@ def main(mode: Literal["manual", "auto"]):
 
     if mode == "auto":
         print("Reading api...")
-        weather = read_weather()
+        weather_data = request_past_data(data[0].date.date())
+        weather_data.append(read_todays_weather())
     else:
-        weather = input_weather()
+        weather_data = [input_weather()]
 
     print("Saving data in database...")
-    save(weather)
+    save(weather_data)
 
     print("Today's weather saved successfully")
 

@@ -10,8 +10,9 @@ db = client[os.getenv("DB_NAME")]
 collection = db["weather"]
 
 
-def save(weather: Weather):
-    collection.insert_one(weather.to_document())
+def save(weather_data: List[Weather]):
+    transformed = [w.to_document() for w in weather_data]
+    collection.insert_many(transformed)
 
 
 def load() -> List[Weather]:
