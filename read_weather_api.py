@@ -9,7 +9,6 @@ _HUMIDITY = "relative_humidity_2m_mean"
 
 
 def read_weather_api(start_date: date, end_date: date):
-    if start_date == end_date: return []
     if start_date > end_date: raise ValueError("start date is after end date")
     
     url = "https://archive-api.open-meteo.com/v1/archive"
