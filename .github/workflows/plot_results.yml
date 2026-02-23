@@ -28,7 +28,7 @@ jobs:
       - name: Commiting and pushing changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git congig --local user.name "github-actions[bot]"
+          git config --local user.name "github-actions[bot]"
           git add results.png
           git commit -m "auto: update results graph via workflow" || echo "No changes"
           git push
