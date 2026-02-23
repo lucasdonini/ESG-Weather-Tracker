@@ -1,0 +1,26 @@
+name: Register Weather Data
+
+on:
+  schedule:
+    - cron: '10 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+      
+      - name: Installing dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Registering weather
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          LATITUDE: ${{ secrets.LATITUDE }}
+          LONGITUDE: ${{ secrets.LONGITUDE }}
+        run: python main.py
