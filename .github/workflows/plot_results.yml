@@ -1,0 +1,34 @@
+name: Plot Results
+
+on:
+  schedule:
+    - cron: '10 10 * * 1'
+  workflow_dispatch:
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+      
+      - name: Installing dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Plotting graph
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: python graph.py
+
+      - name: Commiting and pushing changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git congig --local user.name "github-actions[bot]"
+          git add results.png
+          git commit -m "auto: update results graph via workflow" || echo "No changes"
+          git push
