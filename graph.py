@@ -37,6 +37,7 @@ def plot_graph(data: NormalizedWeatherData):
     plt.xlabel('Data')
     plt.grid(True, linestyle='-', alpha=0.6)
     plt.margins(x=0)
+    plt.yticks(range(0, 101, 10))
     plt.legend()
 
     plt.savefig('results.png')
