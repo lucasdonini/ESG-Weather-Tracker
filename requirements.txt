@@ -1,4 +1,6 @@
 pymongo
 requests
 dotenv
-matplotlib
+fastapi
+uvicorn
+pydantic

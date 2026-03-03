@@ -1,5 +1,6 @@
 from typing import Dict
 from datetime import datetime
+from pydantic import BaseModel
 
 _MIN_FIELD_NAME = "min"
 _MAX_FIELD_NAME = "max"
@@ -7,12 +8,11 @@ _AIR_HUMIDITY_FIELD_NAME = "air_humidity"
 _DATE_FILED_NAME = "date"
 
 
-class Weather:
-    def __init__(self, min: int, max: int, air_humidity: int, date: datetime):
-        self.min = min
-        self.max = max
-        self.air_humidity = air_humidity
-        self.date = date
+class Weather(BaseModel):
+    min: float
+    max: float
+    air_humidity: float
+    date: datetime
 
     def to_document(self):
         return {
@@ -21,9 +21,6 @@ class Weather:
             _DATE_FILED_NAME: self.date,
             _AIR_HUMIDITY_FIELD_NAME: self.air_humidity
         }
-
-    def __str__(self):
-        return f"Weather(max={self.max}, min={self.min}, date={self.date}, air_humidity={self.air_humidity})"
 
 
 def from_document(doc: Dict[int, int, int, int]) -> Weather:
