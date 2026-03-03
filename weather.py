@@ -21,12 +21,3 @@ class Weather(BaseModel):
             _DATE_FILED_NAME: self.date,
             _AIR_HUMIDITY_FIELD_NAME: self.air_humidity
         }
-
-
-def from_document(doc: Dict[int, int, int, int]) -> Weather:
-    return Weather(
-        min=doc[_MIN_FIELD_NAME],
-        max=doc[_MAX_FIELD_NAME],
-        date=doc[_DATE_FILED_NAME],
-        air_humidity=doc[_AIR_HUMIDITY_FIELD_NAME]
-    )

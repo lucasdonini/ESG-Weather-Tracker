@@ -1,6 +1,6 @@
 from pymongo import MongoClient, DESCENDING
 from typing import List
-from weather import Weather, from_document, _DATE_FILED_NAME
+from weather import Weather, _DATE_FILED_NAME, _AIR_HUMIDITY_FIELD_NAME, _MAX_FIELD_NAME, _MIN_FIELD_NAME
 import dotenv
 import os
 
@@ -16,4 +16,11 @@ def save(weather_data: List[Weather]):
 
 
 def load() -> List[Weather]:
-    return [from_document(doc=data) for data in collection.find().sort(_DATE_FILED_NAME, DESCENDING)]
+    return [
+        Weather(
+            min=data[_MIN_FIELD_NAME],
+            max=data[_MAX_FIELD_NAME],
+            air_humidity=data[_AIR_HUMIDITY_FIELD_NAME],
+            date=data[_DATE_FILED_NAME]
+        ) for data in collection.find().sort(_DATE_FILED_NAME, DESCENDING)
+    ]

@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ky from "ky";
+import { useEffect, useState } from "react";
+import "./App.css";
+import WeatherChart from "./WeatherChart";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface Weather {
+  date: string;
+  min: number;
+  max: number;
+  air_humidity: number;
 }
 
-export default App
+function App() {
+  const [data, setData] = useState<Weather[]>([]);
+  const [loaded, setLoaded] = useState(true);
+
+  useEffect(() => {
+    ky.get("http://localhost:8000/api/load")
+      .json<Weather[]>()
+      .then(setData)
+      .catch((e) => {
+        console.error("Failed to fetch data from backend: ", e);
+        setLoaded(false);
+      });
+  }, []);
+
+  const normalizedDates = data.map(entry => {
+    const date = new Date(entry.date)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    return `${day}/${month}`
+  })
+
+  return (
+    <div id="chart-area">
+      {(loaded && (
+        <WeatherChart
+          dates={normalizedDates}
+          min_temps={data.map((entry) => entry.min)}
+          max_temps={data.map((entry) => entry.max)}
+          humidities={data.map((entry) => entry.air_humidity)}
+        />
+      )) || <p>Something went wrong</p>}
+    </div>
+  );
+}
+
+export default App;
