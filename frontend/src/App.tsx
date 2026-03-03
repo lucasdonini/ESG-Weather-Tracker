@@ -15,7 +15,7 @@ function App() {
   const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
-    ky.get("http://localhost:8000/api/load")
+    ky.get(`${import.meta.env.VITE_API_URL}/api/load`)
       .json<Weather[]>()
       .then(setData)
       .catch((e) => {
