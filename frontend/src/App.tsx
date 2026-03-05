@@ -13,9 +13,13 @@ interface Weather {
 function App() {
   const [data, setData] = useState<Weather[]>([]);
   const [loaded, setLoaded] = useState(true);
+  const url = import.meta.env.VITE_API_URL;
+  
+  console.log(url)
+  if (!url) console.error('Failed to load URL from env')
 
   useEffect(() => {
-    ky.get(`${import.meta.env.VITE_API_URL}/api/load`)
+    ky.get(`${url}/api/load`)
       .json<Weather[]>()
       .then(setData)
       .catch((e) => {
