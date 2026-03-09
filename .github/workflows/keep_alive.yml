@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Ping backend
         run: |
-          curl -fso /dev/null -w "Backend status: %{http_code}\n" https://esg-weather-tracker.onrender.com || echo 'Backend did not respond'
+          curl -fso /dev/null -w "Backend status: %{http_code}\n" https://esg-weather-tracker.onrender.com/api/load || echo 'Backend did not respond'
       
       - name: Ping frontend
         run: |
