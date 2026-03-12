@@ -1,22 +1,8 @@
 services:
-  backend:
-    build: ./backend
+  app:
+    build: .
     ports:
       - "8000:8000"
-    networks:
-      - app-network
     env_file:
       - backend/.env
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:80"
-    networks:
-      - app-network
-    env_file:
       - frontend/.env
-
-networks:
-  app-network:
-    driver: bridge

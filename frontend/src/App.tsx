@@ -15,7 +15,10 @@ function App() {
   const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
-    ky.get(`${import.meta.env.VITE_API_URL}/api/load`)
+    const baseUrl = import.meta.env.VITE_API_URL
+    const endpoint = `${baseUrl ?? ""}/api/load`
+    console.log("Requested endpoint:", endpoint)
+    ky.get(endpoint)
       .json<Weather[]>()
       .then(setData)
       .catch((e) => {
