@@ -35,6 +35,7 @@ function App() {
   })
 
   return (
+  <div id="app-wrapper">
     <div id="chart-area">
       {(loaded && (
         <WeatherChart
@@ -45,7 +46,11 @@ function App() {
         />
       )) || <p>Something went wrong</p>}
     </div>
-  );
+    <footer id="app-footer">
+      Desenvolvido por <strong>Lucas Kluska Donini</strong>
+    </footer>
+  </div>
+);
 }
 
 export default App;

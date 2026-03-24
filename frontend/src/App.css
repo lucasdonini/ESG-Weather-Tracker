@@ -1,6 +1,21 @@
-#chart-area {
+#app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100vw;
-  height: 100vh;
+}
+
+#chart-area {
+  height: calc(100vh - 2.5rem); /* desconta a altura do footer */
   padding: 2rem;
   box-sizing: border-box;
+}
+
+#app-footer {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  opacity: 0.5;
 }
