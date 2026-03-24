@@ -47,7 +47,7 @@ function App() {
       )) || <p>Something went wrong</p>}
     </div>
     <footer id="app-footer">
-      Desenvolvido por <strong>Lucas Kluska Donini</strong>
+      <p>Desenvolvido por <strong>Lucas Kluska Donini</strong></p>
     </footer>
   </div>
 );
