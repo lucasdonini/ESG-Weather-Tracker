@@ -1,5 +1,6 @@
 from pymongo import MongoClient, DESCENDING
 from typing import List
+from .env import env
 from .weather import (
     Weather,
     _DATE_FILED_NAME,
@@ -7,12 +8,9 @@ from .weather import (
     _MAX_FIELD_NAME,
     _MIN_FIELD_NAME,
 )
-import dotenv
-import os
 
-dotenv.load_dotenv()
-client = MongoClient(os.getenv("DB_URL"))
-db = client[os.getenv("DB_NAME")]
+client = MongoClient(env.db_url)
+db = client[env.db_name]
 collection = db["weather"]
 
 

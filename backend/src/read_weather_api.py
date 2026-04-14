@@ -1,6 +1,6 @@
 from .weather import Weather
+from .env import env
 from datetime import date, datetime
-import os
 import requests
 
 _MIN_TEMP = "temperature_2m_min"
@@ -14,8 +14,8 @@ def read_weather_api(start_date: date, end_date: date):
 
     url = "https://archive-api.open-meteo.com/v1/archive"
     params = {
-        "latitude": os.getenv("LATITUDE"),
-        "longitude": os.getenv("LONGITUDE"),
+        "latitude": env.latitude,
+        "longitude": env.longitude,
         "daily": f"{_MIN_TEMP},{_MAX_TEMP},{_HUMIDITY}",
         "start_date": start_date,
         "end_date": end_date,
