@@ -18,5 +18,5 @@ class Weather(BaseModel):
             _MIN_FIELD_NAME: self.min,
             _MAX_FIELD_NAME: self.max,
             _DATE_FILED_NAME: self.date,
-            _AIR_HUMIDITY_FIELD_NAME: self.air_humidity
+            _AIR_HUMIDITY_FIELD_NAME: self.air_humidity,
         }

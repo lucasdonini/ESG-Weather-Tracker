@@ -14,7 +14,7 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["GET"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 app.mount("/assets", StaticFiles(directory="dist/assets"), name="assets")
