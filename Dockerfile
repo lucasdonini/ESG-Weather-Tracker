@@ -23,4 +23,4 @@ COPY ./backend .
 COPY --from=frontend-builder /app/frontend/dist ./dist
 ENV PATH="/app/.venv/bin:$PATH"
 
-CMD [ "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000" ]
+CMD [ "uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000" ]
