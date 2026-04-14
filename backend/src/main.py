@@ -1,5 +1,5 @@
-from db_connection import save, load
-from read_weather_api import read_weather_api
+from .db_connection import save, load
+from .read_weather_api import read_weather_api
 from datetime import datetime, timedelta
 
 

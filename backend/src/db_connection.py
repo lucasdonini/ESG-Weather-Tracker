@@ -1,6 +1,6 @@
 from pymongo import MongoClient, DESCENDING
 from typing import List
-from weather import Weather, _DATE_FILED_NAME, _AIR_HUMIDITY_FIELD_NAME, _MAX_FIELD_NAME, _MIN_FIELD_NAME
+from .weather import Weather, _DATE_FILED_NAME, _AIR_HUMIDITY_FIELD_NAME, _MAX_FIELD_NAME, _MIN_FIELD_NAME
 import dotenv
 import os
 

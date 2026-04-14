@@ -1,0 +1,18 @@
+[project]
+name = "ESG-weather-tracker"
+version = "2.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.135.3",
+    "pydantic>=2.13.0",
+    "pymongo>=4.16.0",
+    "requests>=2.33.1",
+    "uvicorn>=0.44.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.3.1",
+    "pre-commit>=4.5.1",
+]

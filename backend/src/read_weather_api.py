@@ -1,4 +1,4 @@
-from weather import Weather
+from .weather import Weather
 from datetime import date, datetime
 import os
 import requests
