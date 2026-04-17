@@ -13,17 +13,23 @@ jobs:
         working-directory: ./backend
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: '3.14'
-      
+          enable-cache: true
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.14
+
       - name: Installing dependencies
-        run: pip install -r requirements.txt
-      
+        run: uv sync --frozen
+
       - name: Registering weather
         env:
           DB_URL: ${{ secrets.DB_URL }}
           DB_NAME: ${{ secrets.DB_NAME }}
           LATITUDE: ${{ secrets.LATITUDE }}
           LONGITUDE: ${{ secrets.LONGITUDE }}
-        run: python main.py
+        run: uv run -m src.main
