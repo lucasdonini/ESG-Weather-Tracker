@@ -48,7 +48,7 @@ const WeatherChart = ({
         type: "value",
         name: "Temperatura (°C)",
         min: 0,
-        max: 100,
+        max: 50,
         position: "left",
         axisLine: {
           lineStyle: {
@@ -59,7 +59,7 @@ const WeatherChart = ({
       {
         type: "value",
         name: "Umidade (%)",
-        min: 0,
+        min: 50,
         max: 100,
         position: "right",
         axisLine: {
@@ -72,7 +72,11 @@ const WeatherChart = ({
     series: [
       getSeries("Mínima (C°)", min_temps, "#00cc88"),
       getSeries("Máxima (C°)", max_temps, "#cc4b00ff"),
-      { ...getSeries("Umidade (%)", humidities, "#007eccff"), yAxisIndex: 1 },
+      {
+        ...getSeries("Umidade (%)", humidities, "rgba(0, 157, 255, 0.4)"),
+        yAxisIndex: 1,
+        type: "bar",
+      },
     ],
     grid: { bottom: "10%", containLabel: true },
     dataZoom: [
@@ -100,4 +104,3 @@ const WeatherChart = ({
 };
 
 export default WeatherChart;
-
